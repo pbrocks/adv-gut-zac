@@ -1,7 +1,5 @@
 /**
- * Import Sidebar Plugins
+ * Import Blocks, Filters, Plugins
  */
 
-import "./blocks";
-// import "./filters";
-import "./plugins";
+import './blocks';
