@@ -13,6 +13,10 @@ module.exports = {
 		style: path.resolve( process.cwd(), 'src', 'style.scss' ),
 		editor: path.resolve( process.cwd(), 'src', 'editor.scss' ),
 	},
+	externals: {
+		'react': 'React',
+		'react-dom': 'ReactDOM'
+	},
 	optimization: {
 		...defaultConfig.optimization,
 		splitChunks: {

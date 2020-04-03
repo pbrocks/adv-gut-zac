@@ -1,10 +1,10 @@
-const { apiFetch } = wp;
+// const { apiFetch } = wp;
 // const { __ } = wp.i18n;
 // const { Component, Fragment } = wp.element;
 // const { InspectorControls } = wp.editor;
 // const { PanelBody, PanelRow, TextControl, Button, Spinner } = wp.components;
 
-// import { apiFetch } from '@wordpress/api-fetch';
+import apiFetch from '@wordpress/api-fetch';
 import { __ } from '@wordpress/i18n';
 import { Component, Fragment } from '@wordpress/element';
 import { InspectorControls } from '@wordpress/editor';

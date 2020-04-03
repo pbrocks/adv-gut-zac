@@ -1,0 +1,16 @@
+.stats-5 .wp-block-column:nth(first-child){
+      padding: 0 5% 0 7%;
+
+}
+.stats-5 .group-1{
+    border-style:solid;
+  border-width:0 0 0 1px;
+  border-color:#000;
+  padding:32% 0;
+}
+.stats-5 .group-2{
+      border-style: solid;
+    border-width: 0 0 1px 1px;
+    border-color: #000;
+    padding: 32% 0;
+}
