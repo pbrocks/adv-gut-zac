@@ -1,12 +1,18 @@
-const { __ } = wp.i18n;
-const { Component, Fragment } = wp.element;
-const { InspectorControls } = wp.editor;
-const { PanelBody, PanelRow, TextControl, Button, Spinner } = wp.components;
+// const { apiFetch } = wp;
+// const { __ } = wp.i18n;
+// const { Component, Fragment } = wp.element;
+// const { InspectorControls } = wp.editor;
+// const { PanelBody, PanelRow, TextControl, Button, Spinner } = wp.components;
+
 const { apiFetch } = wp;
+import { __ } from '@wordpress/i18n';
+import { Component, Fragment } from '@wordpress/element';
+import { InspectorControls } from '@wordpress/editor';
+import { PanelBody, PanelRow, TextControl, Button, Spinner } from '@wordpress/components';
 
 function getSetting() {
   return apiFetch({
-    path: "/adv-gut-zac/v1/block-setting"
+    path: '/adv-gut-zac/v1/block-setting'
   })
     .then(blockSetting => blockSetting)
     .catch(error => error);
@@ -14,8 +20,8 @@ function getSetting() {
 
 function setSetting(setting) {
   return apiFetch({
-    path: "/adv-gut-zac/v1/block-setting",
-    method: "POST",
+    path: '/adv-gut-zac/v1/block-setting',
+    method: 'POST',
     body: setting
   })
     .then(blockSetting => blockSetting)
@@ -23,14 +29,18 @@ function setSetting(setting) {
 }
 
 export default class Edit extends Component {
-  state = {
-    blockSetting: "",
-    isLoading: true,
-    isSaving: false,
-    isEditing: false
-  };
 
-  updateSetting = async () => {
+	constructor(props) {
+		super(props);
+		this.state = {
+			blockSetting: "initial blockSetting value",
+			isLoading: true,
+			isSaving: false,
+			isEditing: false
+		};
+	}
+
+  async updateSetting() {
     this.setState({ isSaving: true });
     const blockSetting = await setSetting(this.state.blockSetting);
     this.setState({
@@ -54,7 +64,7 @@ export default class Edit extends Component {
     if (this.state.isLoading) {
       return (
         <p>
-          <Spinner /> {__("Loading", "adv-gut-zac")}
+          <Spinner /> {__( "Loading", "adv-gut-zac" )}
         </p>
       );
     }
@@ -63,14 +73,14 @@ export default class Edit extends Component {
       <Fragment>
         <InspectorControls>
           <PanelBody
-            title={__("Block Setting", "adv-gut-zac")}
+            title={__( "Global Block Setting", "adv-gut-zac" )}
             initialOpen
           >
             <PanelRow>
               {this.state.isEditing || this.state.blockSetting === "" ? (
-                <p>
+                <div>
                   <TextControl
-                    label={__("Please enter a setting", "adv-gut-zac")}
+                    label={__( "Enter a setting, if empty", "adv-gut-zac")}
                     value={this.state.blockSetting}
                     onChange={blockSetting => {
                       if (!this.state.isSaving) {
@@ -101,7 +111,7 @@ export default class Edit extends Component {
                   >
                     {__("Cancel", "adv-gut-zac")}
                   </Button>
-                </p>
+                </div>
               ) : (
                 <Fragment>
                   <p>{__("Global Setting Saved", "adv-gut-zac")}</p>

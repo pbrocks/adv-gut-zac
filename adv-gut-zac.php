@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-add_action( 'plugins_loaded', 'load_adv_gut_zac_init' );
+add_action( 'plugins_loaded', __NAMESPACE__ . '\load_adv_gut_zac_init' );
 /**
  * load_adv_gut_zac_init
  *
@@ -58,7 +58,7 @@ function adv_gut_zac_editor_assets() {
 	);
 }
 
-add_action( 'enqueue_block_editor_assets', 'adv_gut_zac_editor_assets' );
+add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\adv_gut_zac_editor_assets' );
 
 /**
  * [adv_gut_zac_assets] Hook assets into the editor.
@@ -74,7 +74,7 @@ function adv_gut_zac_assets() {
 	);
 }
 
-add_action( 'enqueue_block_assets', 'adv_gut_zac_assets' );
+add_action( 'enqueue_block_assets', __NAMESPACE__ . '\adv_gut_zac_assets' );
 
 /**
  * Adding a block category creates a Panel
@@ -82,12 +82,12 @@ add_action( 'enqueue_block_assets', 'adv_gut_zac_assets' );
 function create_adv_gut_zac_panel( $categories, $post ) {
 	return array_merge(
 		$categories,
-		array(
-			array(
+		[
+			[
 				'slug'  => 'adv-gut-zac',
-				'title' => __( 'Gather Blocks Panel', 'adv-gut-zac' ),
-			),
-		)
+				'title' => __( 'Adv Gut Zac Blocks Panel', 'adv-gut-zac' ),
+			],
+		]
 	);
 }
-add_filter( 'block_categories', 'create_adv_gut_zac_panel', 10, 2 );
+add_filter( 'block_categories', __NAMESPACE__ . '\create_adv_gut_zac_panel', 10, 2 );

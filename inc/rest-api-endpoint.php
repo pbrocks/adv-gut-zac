@@ -2,8 +2,8 @@
 
 namespace Adv_Gut_Zac\Example_Blocks;
 
-define( 'JSFORWP_REST_NAMESPACE', 'adv-gut-zac/v1' );
-define( 'JSFORWP_BLOCK_SETTING', 'advgutzac_global_block_setting' );
+define( 'ADVGUTZAC_REST_NAMESPACE', 'adv-gut-zac/v1' );
+define( 'ADVGUTZAC_BLOCK_SETTING', 'advgutzac_global_block_setting' );
 
 add_action( 'rest_api_init', __NAMESPACE__ . '\custom_endpoints' );
 /**
@@ -12,7 +12,7 @@ add_action( 'rest_api_init', __NAMESPACE__ . '\custom_endpoints' );
 function custom_endpoints() {
 
 	register_rest_route(
-		JSFORWP_REST_NAMESPACE,
+		ADVGUTZAC_REST_NAMESPACE,
 		'block-setting/',
 		[
 			'methods'  => \WP_REST_Server::READABLE,
@@ -21,7 +21,7 @@ function custom_endpoints() {
 	);
 
 	register_rest_route(
-		JSFORWP_REST_NAMESPACE,
+		ADVGUTZAC_REST_NAMESPACE,
 		'block-setting/',
 		[
 			'methods'             => \WP_REST_Server::EDITABLE,
@@ -34,7 +34,7 @@ function custom_endpoints() {
 
 function get_block_setting() {
 
-	$block_setting = get_option( JSFORWP_BLOCK_SETTING );
+	$block_setting = get_option( ADVGUTZAC_BLOCK_SETTING );
 
 	$response = new \WP_REST_Response( $block_setting );
 	$response->set_status( 200 );
@@ -45,9 +45,9 @@ function get_block_setting() {
 function update_block_setting( $request ) {
 
 	$new_block_setting = $request->get_body();
-	update_option( JSFORWP_BLOCK_SETTING, $new_block_setting );
+	update_option( ADVGUTZAC_BLOCK_SETTING, $new_block_setting );
 
-	$block_setting = get_option( JSFORWP_BLOCK_SETTING );
+	$block_setting = get_option( ADVGUTZAC_BLOCK_SETTING );
 	$response      = new \WP_REST_Response( $block_setting );
 	$response->set_status( 201 );
 
