@@ -18,7 +18,39 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-add_action( 'plugins_loaded', 'load_adv_gut_zac_init' );
+/**
+ * Gets this plugin's absolute directory path.
+ *
+ * @since  2.1.0
+ * @ignore
+ * @access private
+ *
+ * @return string
+ */
+function _get_plugin_directory() {
+	return __DIR__;
+}
+
+/**
+ * Gets this plugin's URL.
+ *
+ * @since  2.1.0
+ * @ignore
+ * @access private
+ *
+ * @return string
+ */
+function _get_plugin_url() {
+	static $plugin_url;
+
+	if ( empty( $plugin_url ) ) {
+		$plugin_url = plugins_url( null, __FILE__ );
+	}
+
+	return $plugin_url;
+}
+
+add_action( 'plugins_loaded', __NAMESPACE__ . '\load_adv_gut_zac_init' );
 /**
  * load_adv_gut_zac_init
  *
@@ -58,7 +90,7 @@ function adv_gut_zac_editor_assets() {
 	);
 }
 
-add_action( 'enqueue_block_editor_assets', 'adv_gut_zac_editor_assets' );
+add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\adv_gut_zac_editor_assets' );
 
 /**
  * [adv_gut_zac_assets] Hook assets into the editor.
@@ -74,7 +106,7 @@ function adv_gut_zac_assets() {
 	);
 }
 
-add_action( 'enqueue_block_assets', 'adv_gut_zac_assets' );
+add_action( 'enqueue_block_assets', __NAMESPACE__ . '\adv_gut_zac_assets' );
 
 /**
  * Adding a block category creates a Panel
@@ -90,4 +122,4 @@ function create_adv_gut_zac_panel( $categories, $post ) {
 		)
 	);
 }
-add_filter( 'block_categories', 'create_adv_gut_zac_panel', 10, 2 );
+add_filter( 'block_categories', __NAMESPACE__ . '\create_adv_gut_zac_panel', 10, 2 );
