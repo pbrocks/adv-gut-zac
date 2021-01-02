@@ -7,7 +7,7 @@
 import apiFetch from '@wordpress/api-fetch';
 import { __ } from '@wordpress/i18n';
 import { Component, Fragment } from '@wordpress/element';
-import { InspectorControls } from '@wordpress/editor';
+import { InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, PanelRow, TextControl, Button, Spinner } from '@wordpress/components';
 
 function getSetting() {
